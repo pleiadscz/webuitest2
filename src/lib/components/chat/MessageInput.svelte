@@ -2,7 +2,7 @@
         import { toast } from '$lib/notification';
         import { onMount, tick } from 'svelte';
         import { settings, hfEnabled, searchEnabled, githubEnabled, kernelEnabled, kernelBrowserUrl, kernelSessionId, desktopEnabled, desktopLoading, desktopBrowserUrl, desktopSessionId } from '$lib/stores';
-        import { blobToFile, calculateSHA256, findWordIndices } from '$lib/utils';
+        import { blobToFile, findWordIndices } from '$lib/utils';
 
         import Suggestions from './MessageInput/Suggestions.svelte';
         import AddFilesPlaceholder from '../AddFilesPlaceholder.svelte';
