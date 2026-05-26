@@ -4,7 +4,6 @@
         import { settings, hfEnabled, searchEnabled, githubEnabled, kernelEnabled, kernelBrowserUrl, kernelSessionId, desktopEnabled, desktopLoading, desktopBrowserUrl, desktopSessionId } from '$lib/stores';
         import { blobToFile, calculateSHA256, findWordIndices } from '$lib/utils';
 
-        import Prompts from './MessageInput/PromptCommands.svelte';
         import Suggestions from './MessageInput/Suggestions.svelte';
         import AddFilesPlaceholder from '../AddFilesPlaceholder.svelte';
         import { SUPPORTED_FILE_TYPE, SUPPORTED_FILE_EXTENSIONS } from '$lib/constants';
@@ -37,7 +36,6 @@
         let chatTextAreaElement: HTMLTextAreaElement;
         let filesInputElement;
 
-        let promptsElement;
         let documentsElement;
         let modelsElement;
 
@@ -602,15 +600,6 @@
 
                                                 <div class="flex">
                                                         <div class="flex-1 flex flex-col relative w-full px-1">
-                                                                <Prompts
-                                                                        bind:this={promptsElement}
-                                                                        bind:prompt
-                                                                        on:select={(e) => {
-                                                                                prompt = e.detail;
-                                                                                chatTextAreaElement.focus();
-                                                                        }}
-                                                                />
-
                                                                 <Documents
                                                                         bind:this={documentsElement}
                                                                         on:select={(e) => {
@@ -646,10 +635,7 @@
                                                                         }}
                                                                         on:keydown={(e) => {
                                                                                 if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
-                                                                                        if (promptsElement.getVisible()) {
-                                                                                                e.preventDefault();
-                                                                                                promptsElement.handleKeyDown(e);
-                                                                                        } else if (documentsElement.getVisible()) {
+                                                                                        if (documentsElement.getVisible()) {
                                                                                                 e.preventDefault();
                                                                                                 documentsElement.handleKeyDown(e);
                                                                                         } else if (modelsElement.getVisible()) {
@@ -659,10 +645,7 @@
                                                                                 }
 
                                                                                 if (e.key === 'Tab') {
-                                                                                        if (promptsElement.getVisible()) {
-                                                                                                e.preventDefault();
-                                                                                                promptsElement.handleKeyDown(e);
-                                                                                        } else if (documentsElement.getVisible()) {
+                                                                                        if (documentsElement.getVisible()) {
                                                                                                 e.preventDefault();
                                                                                                 documentsElement.handleKeyDown(e);
                                                                                         } else if (modelsElement.getVisible()) {
@@ -672,7 +655,6 @@
                                                                                 }
 
                                                                                 if (e.key === 'Escape') {
-                                                                                        promptsElement.setVisible(false);
                                                                                         documentsElement.setVisible(false);
                                                                                         modelsElement.setVisible(false);
                                                                                 }
@@ -683,12 +665,6 @@
 
                                                                                 if (word) {
                                                                                         const query = word.word;
-                                                                                        if (query.startsWith('/')) {
-                                                                                                promptsElement.setQuery(query.slice(1));
-                                                                                                promptsElement.setVisible(true);
-                                                                                        } else {
-                                                                                                promptsElement.setVisible(false);
-                                                                                        }
 
                                                                                         if (query.startsWith('#')) {
                                                                                                 documentsElement.setQuery(query.slice(1));
