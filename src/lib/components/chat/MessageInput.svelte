@@ -1408,7 +1408,7 @@
 								</div>
 							{/if}
 
-								<div class="pl-1 flex items-center gap-2 w-full">
+										<div class="pl-1 flex {prompt.split('\n').length > 1 ? 'flex-col items-start' : 'items-center'} gap-2 w-full">
 
 							<!-- LEFT: InputMenu (plus) -->
 							<div class="flex items-center">
@@ -1468,7 +1468,7 @@
 											id="input-menu-button"
 											class="bg-transparent hover:bg-gray-100 text-gray-700 dark:text-white dark:hover:bg-gray-800 rounded-full size-9 flex justify-center items-center outline-hidden focus:outline-hidden"
 										>
-											<PlusAlt className="size-5" strokeWidth="2.5" />
+												<PlusAlt className="size-6" strokeWidth="2.5" />
 										</div>
 								</InputMenu>
 							</div>
@@ -1900,7 +1900,7 @@
 									</div>
 								</div>
 
-								<div class="self-end flex space-x-1 shrink-0 gap-[0.5px]">
+									<div class="{prompt.split('\n').length > 1 ? 'w-full justify-end pt-2' : 'self-end'} flex space-x-1 shrink-0 gap-[0.5px]">
 									{#if isActive && prompt === '' && files.length === 0}
 										<div class=" flex items-center">
 											<Tooltip content={$i18n.t('Stop')}>
