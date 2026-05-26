@@ -943,14 +943,15 @@
 															e.preventDefault();
 														}
 
-														// Submit the content when Enter key is pressed
-														if (
-															(content !== '' || files.length > 0) &&
-															e.keyCode === 13 &&
-															!e.shiftKey
-														) {
-															submitHandler();
-														}
+															// Submit the content when Enter key is pressed
+															if (
+																e.keyCode === 13 &&
+																!e.shiftKey
+															) {
+																if (content !== '' || files.length > 0) {
+																	submitHandler();
+																}
+															}
 													}
 												}
 
@@ -1081,11 +1082,10 @@
 												<Tooltip content={$i18n.t('Send message')}>
 													<button
 														id="send-message-button"
-											class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full {content !== '' || files.length !== 0
-												? 'bg-black text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200'
-												: 'text-white bg-gray-200 dark:text-gray-900 dark:bg-gray-700 disabled'} transition self-center"
-														type="submit"
-														disabled={content === '' && files.length === 0}
+												class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full {content !== '' || files.length !== 0
+													? 'bg-black text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200'
+													: 'text-white bg-gray-200 dark:text-gray-900 dark:bg-gray-700'} transition self-center"
+															type="submit"
 													>
 														<svg
 															xmlns="http://www.w3.org/2000/svg"
