@@ -24,6 +24,20 @@
 		files = [...files, { type: 'doc', name: file.name, upload_status: true }];
 	};
 
+	const handleSubmit = () => {
+		if (prompt.trim()) {
+			submitPrompt(prompt, null);
+			prompt = '';
+		}
+	};
+
+	const handleKeyDown = (e: KeyboardEvent) => {
+		if (e.key === 'Enter' && !e.shiftKey && window.innerWidth >= 768) {
+			e.preventDefault();
+			handleSubmit();
+		}
+	};
+
 	onMount(() => {
 		window.setTimeout(() => chatTextAreaElement?.focus(), 0);
 		
@@ -64,7 +78,7 @@
 				}} />
 				
 				<form class="flex flex-col relative w-full rounded-3xl px-1.5 border border-gray-100 dark:border-gray-850 bg-white dark:bg-[#303030]" 
-					on:submit|preventDefault={() => { if (prompt.trim()) submitPrompt(prompt, null); }}>
+					on:submit|preventDefault={handleSubmit}>
 					
 					<div class="flex">
 						{#if fileUploadEnabled}
@@ -80,7 +94,7 @@
 
 						<textarea id="chat-textarea" bind:this={chatTextAreaElement} 
 							class="dark:bg-[#303030] dark:text-gray-100 outline-none w-full py-3 px-3 rounded-xl resize-none h-[48px]" 
-							placeholder="Wyślij wiadomość" bind:value={prompt} rows="1" />
+							placeholder="Wyślij wiadomość" bind:value={prompt} rows="1" on:keydown={handleKeyDown} />
 
 						<div class="self-end mb-2 flex space-x-1 mr-1">
 							{#if messages.length == 0 || messages.at(-1).done == true}
