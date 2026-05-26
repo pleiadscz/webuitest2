@@ -4,7 +4,7 @@
         import { settings, hfEnabled, searchEnabled, githubEnabled, kernelEnabled, kernelBrowserUrl, kernelSessionId, desktopEnabled, desktopLoading, desktopBrowserUrl, desktopSessionId } from '$lib/stores';
         import { blobToFile, findWordIndices } from '$lib/utils';
 
-        import Suggestions from './MessageInput/Suggestions.svelte';
+
         import AddFilesPlaceholder from '../AddFilesPlaceholder.svelte';
         import { SUPPORTED_FILE_TYPE, SUPPORTED_FILE_EXTENSIONS } from '$lib/constants';
         import Documents from './MessageInput/Documents.svelte';
@@ -782,9 +782,7 @@
                                         </div>
                                 </form>
 
-                                <div class="mt-2.5">
-                                        <Suggestions {suggestionPrompts} {submitPrompt} />
-                                </div>
+
                         </div>
                 </div>
         </div>
