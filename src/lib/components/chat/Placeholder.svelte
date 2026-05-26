@@ -33,9 +33,10 @@
 	const i18n = getContext('i18n');
 
 	export let createMessagePair: Function;
-	export let stopResponse: Function;
-
-	export let autoScroll = false;
+		export let stopResponse: Function;
+		export let generating = false;
+	
+		export let autoScroll = false;
 
 	export let atSelectedModel: Model | undefined;
 	export let selectedModels: [''];
@@ -226,9 +227,10 @@
 					bind:dragged
 					{pendingOAuthTools}
 					{toolServers}
-					{stopResponse}
-					{createMessagePair}
-					placeholder={$i18n.t('How can I help you today?')}
+						{stopResponse}
+						{generating}
+						{createMessagePair}
+						placeholder={$i18n.t('How can I help you today?')}
 					{onChange}
 					{onUpload}
 					on:submit={(e) => {

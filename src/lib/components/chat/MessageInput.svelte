@@ -11,6 +11,7 @@
 	export let fileUploadEnabled = true;
 	export let prompt = '';
 	export let messages = [];
+	export let generating = false;
 
 	let drawerOpen = false;
 	let chatTextAreaElement: any; // Can be RichTextInput or textarea
@@ -108,7 +109,7 @@
 							placeholder="Wyślij wiadomość" bind:value={prompt} rows="1" on:keydown={handleKeyDown} />
 
 						<div class="self-end mb-2 flex space-x-1 mr-1">
-							{#if messages.length == 0 || (messages.length > 0 && messages.at(-1).done == true)}
+							{#if !generating && (messages.length == 0 || (messages.length > 0 && messages.at(-1).done == true))}
 								<button class="bg-black text-white hover:bg-gray-900 dark:bg-white dark:text-black rounded-full p-1.5" type="submit">
 									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-5 h-5">
 										<path fill-rule="evenodd" d="M8 14a.75.75 0 0 1-.75-.75V4.56L4.03 7.78a.75.75 0 0 1-1.06-1.06l4.5-4.5a.75.75 0 0 1 1.06 0l4.5 4.5a.75.75 0 0 1-1.06 1.06L8.75 4.56v8.69A.75.75 0 0 1 8 14Z" clip-rule="evenodd" />

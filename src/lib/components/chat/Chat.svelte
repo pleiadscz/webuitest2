@@ -3192,10 +3192,11 @@
 									bind:dragged
 									{pendingOAuthTools}
 									toolServers={$toolServers}
-									{stopResponse}
-									{createMessagePair}
-									{onSelect}
-									{onUpload}
+										{stopResponse}
+										{generating}
+										{createMessagePair}
+										{onSelect}
+										{onUpload}
 									onChange={(data) => {
 										if (!$temporaryChatEnabled) {
 											saveDraft(data);
