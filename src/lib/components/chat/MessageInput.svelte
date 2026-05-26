@@ -1,14 +1,10 @@
 <script lang="ts">
-	import { toast } from '$lib/notification';
 	import { onMount } from 'svelte';
-	import { settings, desktopLoading } from '$lib/stores';
-	import { blobToFile } from '$lib/utils';
 	import AddFilesPlaceholder from '../AddFilesPlaceholder.svelte';
 	import BottomDrawer from '../common/BottomDrawer.svelte';
 
 	export let submitPrompt: Function;
 	export let stopResponse: Function;
-	export let autoScroll = true;
 	export let files = [];
 	export let fileUploadEnabled = true;
 	export let prompt = '';
@@ -23,11 +19,6 @@
 		chatTextAreaElement.style.height = '';
 		chatTextAreaElement.style.height = Math.min(chatTextAreaElement.scrollHeight, 200) + 'px';
 	}
-
-	const scrollToBottom = () => {
-		const element = document.getElementById('messages-container');
-		if (element) element.scrollTop = element.scrollHeight;
-	};
 
 	const uploadFile = (file) => {
 		files = [...files, { type: 'doc', name: file.name, upload_status: true }];
